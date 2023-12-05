@@ -36,7 +36,7 @@ export class EditProductComponent implements OnInit {
   }
 
   initForm() {
-    const [dateFechaLiberacion, timerInsc] = this.dataEditProduct.date_release.split('T');
+    const [dateFechaLiberacion, timerInsc] = this.dataEditProduct.date_release!= null && this.dataEditProduct.date_release.length > 0 ? this.dataEditProduct.date_release.split('T'): [];
     this.editProductForm = this.fb.group({
       idTable: [''],
       idProduct: [{ disabled: true, value: '' }],

@@ -45,14 +45,6 @@ export class ProductService {
     return this.httpClient.get<ProductData[]>(url, {params: queryParams});
   }
 
-  getProducById(idTable: string) {
-
-    const environment_params = this.environment.getEnvironment();
-    const url = environment_params.apiProduct + `bp/products/${idTable}`;
-
-    return this.httpClient.get<ProductData[]>(url);
-  }
-
   updateProductData(idTable: string, product: ProductData) {
     const environment_params = this.environment.getEnvironment();
     const url = environment_params.apiProduct + `bp/products/${idTable}`;

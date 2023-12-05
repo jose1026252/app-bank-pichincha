@@ -5,7 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { ValidatorsService } from '../../shared/service/validators.service';
 import { RoutingService } from '../../services/routing.service';
 import { MpdalService } from '../../services/mpdal.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('EditProductComponent', () => {
@@ -19,7 +19,9 @@ describe('EditProductComponent', () => {
     TestBed.configureTestingModule({
       declarations: [EditProductComponent],
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        FormsModule
       ],
       providers: [
         ProductService,

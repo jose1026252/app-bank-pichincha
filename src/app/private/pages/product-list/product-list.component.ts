@@ -16,7 +16,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ProductListComponent implements OnInit {
   public productListForm: FormGroup = this.fb.group({
     productSearch: [''],
-    selectRecord: ['']
+    selectRecord: [''],
   });
   public products: ProductData[] = [];
   public productSearch: string = '';

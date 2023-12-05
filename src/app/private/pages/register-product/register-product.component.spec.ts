@@ -4,7 +4,7 @@ import { RegisterProductComponent } from './register-product.component';
 import { ProductService } from '../../services/product.service';
 import { RoutingService } from '../../services/routing.service';
 import { MpdalService } from '../../services/mpdal.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidatorsService } from '../../shared/service/validators.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
@@ -19,7 +19,9 @@ describe('RegisterProductComponent', () => {
     TestBed.configureTestingModule({
       declarations: [RegisterProductComponent],
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        FormsModule
       ],
       providers: [
         ProductService,

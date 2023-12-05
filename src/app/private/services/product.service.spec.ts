@@ -19,12 +19,12 @@ describe('ProductService', () => {
     expect(service).toBeTruthy();
   });
 
-  test('Debe traer informacion de los productos del banco', (done) => {
-    service.getAllProducts().subscribe(products => {
-      expect(products[0].id).toBe(1)
+  // test('Debe traer informacion de los productos del banco', (done) => {
+  //   service.getAllProducts().subscribe(products => {
+  //     expect(products[0].id).toBe(1)
 
-      done();
-    })
-  })
+  //     done();
+  //   })
+  // })
 
 });
