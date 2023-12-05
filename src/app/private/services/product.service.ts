@@ -1,12 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { EnvironmentParamsService } from './environment-params.service';
 import { ProductData } from '../interfaces/product-data.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService implements OnInit {
 
   private allProducts: ProductData[] = [];
 
@@ -14,6 +14,9 @@ export class ProductService {
     private readonly httpClient: HttpClient,
     private readonly environment: EnvironmentParamsService
   ) {
+
+  }
+  ngOnInit(): void {
     this.getAllProducts().subscribe( (resp) => { this.allProducts = resp});
   }
 

@@ -9,6 +9,18 @@ import { MpdalService } from '../../services/mpdal.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from '../../shared/pipe/filter.pipe';
 
+const mockProduct = [
+  {
+    "idProduct": "idProduct 1",
+    "name": "Cuenta Vista",
+    "description": "Cuenta de ahorros con rendimientos",
+    "logo": "https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg",
+    "date_release": "2023-08-05",
+    "date_revision": "2024-07-05",
+    "id": "1"
+  }
+];
+
 
 
 describe('ProductListComponent', () => {
