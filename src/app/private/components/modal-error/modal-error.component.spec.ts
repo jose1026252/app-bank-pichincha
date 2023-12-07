@@ -26,7 +26,9 @@ describe('ModalErrorComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  test('debe emitir el valor de cierre de modal', () => {
-    jest.spyOn(service.$modalCloseError, 'emit');
+  test('should emit false when closedModal is called', () => {
+    const emitSpy = jest.spyOn(service.$modalCloseError, 'emit');
+    component.closedModal();
+    expect(emitSpy).toHaveBeenCalledWith(false);
   });
 });

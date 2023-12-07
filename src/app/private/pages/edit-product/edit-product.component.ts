@@ -25,7 +25,7 @@ export class EditProductComponent implements OnInit {
     private readonly coookie: CookieService,
     private readonly validatorServic: ValidatorsService,
     private readonly productService: ProductService,
-    private readonly routing: RoutingService,
+    public readonly routing: RoutingService,
     private readonly modalService: MpdalService,
   ) { }
   ngOnInit(): void {
@@ -53,7 +53,7 @@ export class EditProductComponent implements OnInit {
   }
 
   loadDataEditProduct() {
-    setTimeout(() => {
+
       if (Object.keys(this.dataEditProduct).length > 0) {
         const [dateFechaRestruc, timer] = this.dataEditProduct.date_revision.split('T');
         const fechaPrueba = '2023-01-17';
@@ -68,7 +68,7 @@ export class EditProductComponent implements OnInit {
           idTable: this.dataEditProduct.id
         });
       }
-    }, 5000);
+
 
   }
 

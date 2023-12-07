@@ -1,15 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import { EnvironmentParamsService } from './environment-params.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EnvironmentParams } from '../interfaces/environment-params.interface';
-import { environments } from 'src/environments/environments';
 
 describe('EnvironmentParamsService', () => {
+  let httpClientSpy: { get: jest.Mock };
   let service: EnvironmentParamsService;
 
 
   beforeEach(() => {
+    httpClientSpy = {
+      get: jest.fn()
+    };
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule
