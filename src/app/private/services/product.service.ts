@@ -32,20 +32,12 @@ export class ProductService implements OnInit {
     return this.allProducts;
   }
 
-  getProductList(limit?: number) {
+  getProductList() {
 
     const environment_params = this.environment.getEnvironment();
     const url = environment_params.apiProduct + `bp/products`;
-    let queryParams = new HttpParams();
 
-    if (limit as number > 0) {
-      queryParams = queryParams.append('complet', false);
-      queryParams = queryParams.append('page', 1);
-      queryParams = queryParams.append('limit', limit!);
-    }
-
-
-    return this.httpClient.get<ProductData[]>(url, {params: queryParams});
+    return this.httpClient.get<ProductData[]>(url);
   }
 
   updateProductData(idTable: string, product: ProductData) {

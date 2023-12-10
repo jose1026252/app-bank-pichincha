@@ -1,21 +1,60 @@
 .style_form {
+  background-color: #EEEDED;
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: 0;
-  margin-top: 2rem;
+  padding: 4rem 0;
   display: flex;
   justify-content: center;
 }
 
+.register_button {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4rem;
+}
 
-.card {
+/* hr {
+  margin: 0 0;
+  size: 30px;
+  color: black;
+  opacity: none;
+} */
+
+.line_register {
+  size: 3rem;
+}
+
+.register_section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.content_register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 5rem;
+}
+
+.item_logo {
+  width: 15rem;
+  padding: 2rem 0;
+}
+
+
+.container_register {
+  background-color: white;
   width: 70%;
-  max-width: 100%;
-  margin: 2rem auto;
-  box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+  margin: 2rem 2rem;
+  box-shadow: 0 0 0px rgba(0, 0, 0, .5);
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -27,8 +66,8 @@
 }
 
 .section_formulario {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   row-gap: 50px;
   justify-items: center;
   margin: 3rem 5rem;
@@ -36,16 +75,17 @@
 }
 
 .form-control {
-  padding: 1rem 1rem;
+  padding: 0.5rem 0.5rem;
 }
 
 .button_reiniciar {
   display: block;
   background: #ADD8E6;
-  width: 200px;
+  width: 100%;
+  height: 10vh;
   color: #252850;
   font-family: var(--font);
-  padding: 18px 0;
+  padding: 2rem 2rem;
   outline: none;
   border: none;
   border-radius: 6px;
@@ -56,10 +96,11 @@
 .button_enviar {
   display: block;
   background: #FDFD96;
-  width: 200px;
-  color: #ADD8E6;
+  width: 100%;
+  height: 10vh;
+  color: #828282;
   font-family: var(--font);
-  padding: 18px 0;
+  padding: 2rem 2rem;
   outline: none;
   border: none;
   border-radius: 6px;

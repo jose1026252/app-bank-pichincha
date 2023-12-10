@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { RoutingService } from '../../services/routing.service';
 import { ProductData } from '../../interfaces/product-data.interface';
 import { MpdalService } from '../../services/mpdal.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-register-product',
@@ -15,6 +16,9 @@ export class RegisterProductComponent {
   public registerProductForm: FormGroup = new FormGroup({});
   private allProducts: ProductData[] = [];
   public modalErrorShow: boolean = false;
+  public logoBank: string = './assets/img/logo_banco.png'
+
+  public date: string = '';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -22,11 +26,15 @@ export class RegisterProductComponent {
     private readonly productService: ProductService,
     private readonly routing: RoutingService,
     private readonly modalService: MpdalService,
+    private datePipe: DatePipe
   ) {
     this.allProducts = this.productService.getAllProductsValidate();
 
   }
   ngOnInit(): void {
+    const str = new Date().setSeconds(0,0);
+    const [dt, tm] = new Date(str).toISOString().split('T');
+    this.date = dt;
     this.modalService.$modalCloseError.subscribe((responseModalError: any) => {this.modalErrorShow = responseModalError});
     this.initForm();
   }
@@ -40,7 +48,7 @@ export class RegisterProductComponent {
       descripcion: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
       logo: ['', [Validators.required]],
       fechaLiberacion: ['', [Validators.required]],
-      fechaReestructuracion: ['', [Validators.required]],
+      fechaReestructuracion: [{ disabled: true, value: '' }],
     }, {
       validators: [
         this.validatorServic.validateDiferentDate('fechaLiberacion', 'fechaReestructuracion'),
@@ -89,8 +97,24 @@ export class RegisterProductComponent {
     });
   }
 
-  modalError() {
-    this.modalErrorShow = true;
+    modalError() {
+      this.modalErrorShow = true;
+    }
+
+  functionCapturefecha(event: any) {
+    console.log('event', event.target.value);
+    const date = new Date(event.target.value);
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate() + 1;
+    const sumDate: string = this.datePipe.transform(new Date(year + 1, month, day),'yyyy-MM-dd') as string;
+    this.reloadDateRevision(sumDate);
+  }
+
+  reloadDateRevision(date: string) {
+    this.registerProductForm.patchValue({
+      fechaReestructuracion: date
+    });
   }
 
 }

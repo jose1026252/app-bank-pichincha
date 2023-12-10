@@ -14,7 +14,7 @@ describe('MpdalService', () => {
     expect(service).toBeTruthy();
   });
 
-  test('Verificar si se esta emitiendo valores', () => {
+  test('Verify whether securities are being issued', () => {
     jest.spyOn(service.$modalClose, 'emit');
     jest.spyOn(service.$modalCloseError, 'emit');
     jest.spyOn(service.$modalConfirm, 'emit');

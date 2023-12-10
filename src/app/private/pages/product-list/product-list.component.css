@@ -1,20 +1,35 @@
 .searchInput {
-  margin: 5rem auto 1rem 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.content_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.item_logo {
+  width: 15rem;
+  padding: 2rem 0;
 }
 
 .container {
+  background-color: #EEEDED;
   width: 100%;
   max-width: 100%;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1rem;
 
-  .card {
-    width: 90%;
-    max-width: 100%;
-    margin: 2rem auto;
-    box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+
+  .conten_table {
+    width: 100%;
+    margin: 2rem 0;
+    box-shadow: 0 0 0 rgba(0, 0, 0, .5);
     border-radius: 10px;
   }
 
@@ -25,46 +40,66 @@
   }
 }
 
+.table_product {
+  margin: 0 3rem;
+}
+
+.footer_table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+}
+
+.style_form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 0 2rem;
+}
+
 img {
   width: 3rem;
 }
 
 table {
-  width: 80%;
-  margin: auto 5rem;
+  margin-top: 1rem;
   border-collapse: collapse;
+  --bs-table-bg: none;
 }
 
 .select-record {
-  margin: 2rem 5rem;
-  width: 80%;
   display: flex;
-  justify-content: flex-end;
 }
 
 .section_header {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
-  align-items: center;
+  margin: 2rem 2rem 0 2rem;
 }
 
 .btn_agregar {
-  padding-top: 3rem;
-  padding-left: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .dropdown-menu {
   --bs-dropdown-min-width: 3rem;
 }
 
+.table>thead {
+  background-color: #f4f4f4;
+}
+
 .button_Add {
   display: block;
-  background: #FDFD96;
-  width: 200px;
-  color: #ADD8E6;
+  background: #FFD200;
+  width: 20%;
+  height: 10vh;
+  color: black;
   font-family: var(--font);
-  padding: 18px 0;
   outline: none;
   border: none;
   border-radius: 6px;
@@ -82,28 +117,36 @@ table {
   .table {
     border: 0px;
   }
+
   .table caption {
     font-size: 22px;
   }
+
   .table thead {
     display: none;
   }
+
   .table tr {
     margin-bottom: 8px;
     border-bottom: 4px solid #ddd;
     display: block;
   }
-  .table th, .table td {
+
+  .table th,
+  .table td {
     font-size: 12px;
   }
+
   .table td {
     display: block;
     border-bottom: 1px solid #ddd;
     text-align: right;
   }
+
   .table td:last-child {
     border-bottom: 0px;
   }
+
   .table td::before {
     content: attr(data-label);
     font-weight: bold;
@@ -112,8 +155,3 @@ table {
   }
 
 }
-
-
-
-
-

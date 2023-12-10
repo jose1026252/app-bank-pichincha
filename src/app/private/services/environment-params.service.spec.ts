@@ -25,7 +25,7 @@ describe('EnvironmentParamsService', () => {
     expect(service).toBeTruthy();
   });
 
-  test('Debe traer los params en metodo getEnvParams', () => {
+  test('should call params in method getEnvParams', () => {
     const paramsExpect: EnvironmentParams = {} as EnvironmentParams;
 
     service.getEnvParams().then(params => {
@@ -34,22 +34,13 @@ describe('EnvironmentParamsService', () => {
     })
   })
 
-  test('Debe traer los params en el metodo getEnvironment', () => {
+  test('should call params in method getEnvironment', () => {
     const paramsExpect: EnvironmentParams = {} as EnvironmentParams;
 
     const serviceParams = service.getEnvironment()
 
     expect(serviceParams).toEqual(paramsExpect);
   })
-
-  // test('Debe traer el archivo params.json', (done) => {
-  //   const paramsJsonExpect = environments.production
-  //   service.getEnvParams().then(params => {
-  //     expect(params).toBe(paramsExpect)
-
-  //     done();
-  //   })
-  // })
 
 
 });

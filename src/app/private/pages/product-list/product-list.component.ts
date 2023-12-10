@@ -32,6 +32,10 @@ export class ProductListComponent implements OnInit {
     },
   ];
 
+  public result: string = '5';
+
+  public logoBank: string = './assets/img/logo_banco.png'
+
   public modalShow: boolean = false;
   public modalErrorShow: boolean = false;
   public messageModal: MessageModal = {} as MessageModal;
@@ -68,11 +72,9 @@ export class ProductListComponent implements OnInit {
     })
   }
 
-  getAllProductsList(limit?: number) {
-
-    this.productService.getProductList(limit).subscribe({
+  getAllProductsList() {
+    this.productService.getProductList().subscribe({
       next: (responseProducts) => {
-        console.log('respuesta servicio', responseProducts);
         if (responseProducts.length > 0) {
           this.products = responseProducts;
         }
@@ -81,7 +83,6 @@ export class ProductListComponent implements OnInit {
   }
 
   butonEdit(product: ProductData) {
-    console.log('producto escogido', product);
     this.coookie.set('product', JSON.stringify(product));
     this.routing.routingUrlRouter('/private/edit-product');
   }
@@ -124,6 +125,7 @@ export class ProductListComponent implements OnInit {
 
   onSelectOptionRecord(event: any) {
     this.record = event.target.value;
+    this.result = this.record.toString();
   }
 
   btnAddProduct() {

@@ -1,6 +1,5 @@
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Injectable } from '@angular/core';
-import { ProductService } from '../../services/product.service';
 import { ProductData } from '../../interfaces/product-data.interface';
 
 @Injectable({

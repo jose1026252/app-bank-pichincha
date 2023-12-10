@@ -162,11 +162,11 @@ describe('ProductService', () => {
     httpClientMock.get.mockReturnValue(productListMock);
   });
 
-  it('should be created', () => {
+  test('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  test('llamado de error servicio get informacion de los productos del banco', () => {
+  test('should call for error service get product information', () => {
     const error = new Error('error');
     jest.spyOn(httpClientMock, 'get').mockReturnValue(of(throwError(error)));
     const errorSpy = jest.spyOn(errorHandleServiceMock, 'handleError');
@@ -177,7 +177,7 @@ describe('ProductService', () => {
     }
   })
 
-  test('llamado de error servicio post informacion de los productos del banco', () => {
+  test('should call for error service after-sales service product information', () => {
     const error = new Error('error');
     jest.spyOn(httpClientMock, 'post').mockReturnValue(of(throwError(error)));
     const errorSpy = jest.spyOn(errorHandleServiceMock, 'handleError');
@@ -197,7 +197,7 @@ describe('ProductService', () => {
     }
   })
 
-  test('llamado de error servicio put informacion de los productos del banco', () => {
+  test('should call error service error put product information', () => {
     const error = new Error('error');
     jest.spyOn(httpClientMock, 'put').mockReturnValue(of(throwError(error)));
     const errorSpy = jest.spyOn(errorHandleServiceMock, 'handleError');
@@ -217,7 +217,7 @@ describe('ProductService', () => {
     }
   })
 
-  test('llamado de error servicio delete informacion de los productos del banco', () => {
+  test('should call for error service delete product information', () => {
     const error = new Error('error');
     jest.spyOn(httpClientMock, 'delete').mockReturnValue(of(throwError(error)));
     const errorSpy = jest.spyOn(errorHandleServiceMock, 'handleError');
@@ -237,18 +237,18 @@ describe('ProductService', () => {
     }
   })
 
-  test('llamado de error servicio get informacion de los productos del banco', () => {
+  test('should call of error service get product information', () => {
     const error = new Error('error');
     jest.spyOn(httpClientMock, 'get').mockReturnValue(of(throwError(error)));
     const errorSpy = jest.spyOn(errorHandleServiceMock, 'handleError');
     try {
-      service.getProductList(10).subscribe(() => { });
+      service.getProductList().subscribe(() => { });
     } catch (e) {
       expect(errorSpy).toHaveBeenCalled();
     }
   })
 
-  test('llamado metodo que devuelve todos los productos', () => {
+  test('should call method that returns all products', () => {
     const allProducts: ProductData[] = [];
     const serviceAllProduct = service.getAllProductsValidate();
 

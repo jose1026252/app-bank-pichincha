@@ -7,6 +7,7 @@ import { ProductService } from '../../services/product.service';
 import { RoutingService } from '../../services/routing.service';
 import { MessageModal } from '../../interfaces/message-modal.interface';
 import { MpdalService } from '../../services/mpdal.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-product',
@@ -19,6 +20,9 @@ export class EditProductComponent implements OnInit {
   public showModal = false;
   public messageModal: MessageModal = {} as MessageModal;
   public modalErrorShow: boolean = false;
+  public dateLiberation: any;
+  public logoBank: string = './assets/img/logo_banco.png'
+  public date: string = '';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -27,8 +31,12 @@ export class EditProductComponent implements OnInit {
     private readonly productService: ProductService,
     public readonly routing: RoutingService,
     private readonly modalService: MpdalService,
+    private datePipe: DatePipe
   ) { }
   ngOnInit(): void {
+    const str = new Date().setSeconds(0,0);
+    const [dt, tm] = new Date(str).toISOString().split('T');
+    this.date = dt;
     this.dataEditProduct = this.coookie.get('product').length > 0 ? JSON.parse(this.coookie.get('product')) : {};
     this.modalService.$modalCloseError.subscribe((responseModalError: any) => {this.modalErrorShow = responseModalError});
     this.initForm();
@@ -55,9 +63,8 @@ export class EditProductComponent implements OnInit {
   loadDataEditProduct() {
 
       if (Object.keys(this.dataEditProduct).length > 0) {
-        const [dateFechaRestruc, timer] = this.dataEditProduct.date_revision.split('T');
-        const fechaPrueba = '2023-01-17';
-        const [dateFechaLiberacion, timerInsc] = this.dataEditProduct.date_release.split('T');
+        const [dateFechaRestruc, timer] = this.dataEditProduct.date_revision != null && this.dataEditProduct.date_revision.length > 0 ? this.dataEditProduct.date_revision.split('T'): [] ;
+        const [dateFechaLiberacion, timerInsc] = this.dataEditProduct.date_release != null && this.dataEditProduct.date_release.length > 0 ? this.dataEditProduct.date_release.split('T'): [];
         this.editProductForm.patchValue({
           idProduct: this.dataEditProduct.idProduct,
           nombreProducto: this.dataEditProduct.name,
@@ -115,6 +122,22 @@ export class EditProductComponent implements OnInit {
 
   modalError() {
     this.modalErrorShow = true;
+  }
+
+  functionCapturefecha(event: any) {
+    console.log('event', event.target.value);
+    const date = new Date(event.target.value);
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate() + 1;
+    const sumDate: string = this.datePipe.transform(new Date(year + 1, month, day),'yyyy-MM-dd') as string;
+    this.reloadDateRevision(sumDate);
+  }
+
+  reloadDateRevision(date: string) {
+    this.editProductForm.patchValue({
+      fechaReestructuracion: date
+    });
   }
 
 

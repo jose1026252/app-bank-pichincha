@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ValidatorsService } from './validators.service';
 import { ProductData } from '../../interfaces/product-data.interface';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 describe('ValidatorsService', () => {
   let service: ValidatorsService;
@@ -177,5 +177,38 @@ describe('ValidatorsService', () => {
 
     expect(result).toBeNull(); // Cambia esto según tu lógica de validación
   });
+
+  test('should set errors when fieldValue2 is less than fieldValue1', () => {
+    const dateInit = '2023-01-01';
+    const field = 'fechaReestructuracion';
+
+    const formGroup = new FormGroup({
+      fechaReestructuracion: new FormControl('2022-01-01') // Simula un campo de fecha con valor anterior
+    });
+
+    const validationFunction = service.validateDate(dateInit, field);
+    const validationResult: ValidationErrors | null = validationFunction(formGroup);
+
+    expect(validationResult).toEqual({ notEqual: true });
+    expect(formGroup.get(field)?.hasError('notEqual')).toBe(true);
+  });
+
+  test('should set errors when time difference between fields is less than 365 days', () => {
+    const field1 = 'startDate';
+    const field2 = 'endDate';
+
+    const formGroup = new FormGroup({
+      startDate: new FormControl('2022-01-01'), // Simula un campo de fecha de inicio
+      endDate: new FormControl('2022-01-15') // Simula un campo de fecha de finalización, menos de 365 días después
+    });
+
+    const validationFunction = service.validateDiferentDate(field1, field2);
+    const validationResult: ValidationErrors | null = validationFunction(formGroup);
+
+    expect(validationResult).toEqual({ notEqual: true });
+    expect(formGroup.get(field2)?.hasError('notEqual')).toBe(true);
+  });
+
+
 
 });

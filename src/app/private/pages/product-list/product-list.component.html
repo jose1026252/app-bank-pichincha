@@ -1,9 +1,9 @@
-<div class="container card_view">
-  <div class="card">
-    <form class="style_form" [formGroup]="productListForm">
-
+<div class="content_list">
+  <img [src]="logoBank" class="item_logo" [alt]="">
+  <div class="container card_view">
+    <form [formGroup]="productListForm">
       <div class="section_header">
-        <div class="col-sm-5 searchInput">
+        <div class="col-sm-4 searchInput">
           <input type="text" name="productSearch" formControlName="productSearch" placeholder="Search..."
             class="form-control" [(ngModel)]="productSearch">
         </div>
@@ -12,73 +12,82 @@
           <button type="button" (click)="btnAddProduct()" class="button_Add">Agregar</button>
         </div>
       </div>
+      <div class="conten_table">
+
+          <div class="style_form">
+            <div class="table_product">
+              <table id="" class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Logo</th>
+                    <th>Nombre del producto</th>
+                    <th>Descripcion</th>
+                    <th>Fecha de liberacion</th>
+                    <th>Fecha de reestructuracion</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of products | slice: 0:record | filter:productSearch">
+                    <td data-label="Logo">
+                      <img [src]="product.logo" [alt]="">
+                    </td>
+                    <td data-label="Nombre del producto">
+                      {{ product.name | titlecase }}
+                    </td>
+                    <td data-label="Descripcion">{{ product.description | titlecase }}</td>
+                    <td data-label="Fecha de liberaciono">{{ product.date_release | date: 'dd/MM/yyyy' }}</td>
+                    <td data-label="Fecha de reestructuracion">{{ product.date_revision | date: 'dd/MM/yyyy' }}</td>
+                    <td>
+                      <div class="dropdown">
+                        <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                          <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" (click)="butonEdit(product)"><i class="bi bi-pencil-fill"></i></a>
+                          </li>
+                          <li><a class="dropdown-item" (click)="butonRemove(product)"><i class="bi bi-trash-fill"></i></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
 
 
-      <div class="row card_item">
-        <div class="col">
-          <table id="table_product" class="table table-hover table_desktop" >
-            <thead>
-              <tr>
-                <th>Logo</th>
-                <th>Nombre del producto</th>
-                <th>Descripcion</th>
-                <th>Fecha de liberacion</th>
-                <th>Fecha de reestructuracion</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let product of products | slice: 0:record | filter:productSearch">
-                <td data-label="Logo">
-                  <img [src]="product.logo" [alt]="">
-                </td>
-                <td data-label="Nombre del producto">
-                  {{ product.name }}
-                </td>
-                <td data-label="Descripcion">{{ product.description }}</td>
-                <td data-label="Fecha de liberaciono">{{ product.date_release | date: 'dd/MM/yyyy' }}</td>
-                <td data-label="Fecha de reestructuracion">{{ product.date_revision | date: 'dd/MM/yyyy' }}</td>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      <i class="bi bi-three-dots-vertical"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" (click)="butonEdit(product)"><i class="bi bi-pencil-fill"></i></a>
-                      </li>
-                      <li><a class="dropdown-item" (click)="butonRemove(product)"><i class="bi bi-trash-fill"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
+            <div class="footer_table">
+              <div class="label_result">
+                <label class="label_inline">{{result}} Resultados</label>
+              </div>
+              <div class="select-record">
+                <label class="label_inline">Records</label>
+                <div class="row-sm-1">
+                  <select class="form-control form-select" name="record" formControlName="selectRecord" [(ngModel)]="record"
+                    (change)="onSelectOptionRecord($event)">
+                    <option *ngFor="let record of listRecords" value="{{record.value}}">{{record.value}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
 
-              </tr>
-            </tbody>
+          </div>
 
-          </table>
-        </div>
-      </div>
-
-      <div class="select-record">
-        <label class="label_inline">Records</label>
-        <div class="row-sm-1">
-          <select class="form-control form-select" name="record" formControlName="selectRecord" [(ngModel)]="record"
-            (change)="onSelectOptionRecord($event)">
-            <option *ngFor="let record of listRecords" value="{{record.value}}">{{record.value}}
-            </option>
-          </select>
-        </div>
       </div>
     </form>
 
   </div>
-</div>
 
-<div *ngIf="modalShow">
-  <app-modal-confirmation [message]="messageModal"></app-modal-confirmation>
-</div>
+  <div *ngIf="modalShow">
+    <app-modal-confirmation [message]="messageModal"></app-modal-confirmation>
+  </div>
 
-<div *ngIf="modalErrorShow">
-  <app-modal-error></app-modal-error>
+  <div *ngIf="modalErrorShow">
+    <app-modal-error></app-modal-error>
+  </div>
 </div>
